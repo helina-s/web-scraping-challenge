@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class='jumbotron text-center border-bottom'>
+        <h1> Mission to Mars </h1>
+        <p><a class="btn btn-primary btn-lg" href="../scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <div class = 'container' >
+        <div class = 'row'>
+            <div class='col-12'>
+                <h2><b> Latest Mars News </b></h2>
+                <h3 style='font-size:20px'><b>{{mars_info.news_title}}</b></h3>
+                <p style='font-size:10px'>{{mars_info.news_p}}</p>
+             </div>
+        </div>
+    </div>
+<hr/>
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'col-md-8'>
+                <h4><b> Featured Mars Image </b></h4>
+                <img src="{{mars_info.featured_image_url}}" style="width: 100%;">
+            </div>
+            <div class = 'col-md-4'>
+                <h5><strong>Mars Facts</strong></h5>
+                {{mars_info.mars_facts | safe }}
+            </div>
+        </div> 
+    </div>
+<hr/>
+    <div class = 'container'>
+        <h2 style="padding-bottom: 20px; text-align: center;"><strong>Mars Hemispheres</strong></h2>
+            <div class="card-deck">
+                <div class="col-md-12">
+                    <div class="row">
+                        {% for result in mars_info.hemisphere_image_urls %}
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3" style="max-width: 50rem;">
+                                <img class="card-img-top" src="{{result.img_url }}">
+                                <div class="card-body">
+                                    <p class="card-text">{{result.title }}</p>                
+                                </div>
+                            </div>   
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>   
+</body>
+</html>
